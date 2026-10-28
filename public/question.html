@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Вопросникус</title>
+
+
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <header class="border-bottom">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container gap-3">
+
+                <a class="navbar-brand" href="./index.html">
+                    Вопросникус
+                </a>
+
+                <form class="d-flex flex-grow-1 gap-2" role="search">
+                    <input class="form-control" type="search" name="s" placeholder="Поиск">
+                    <button class="btn btn-success" type="submit">
+                        Найти
+                    </button>
+                </form>
+
+                <a class="btn btn-outline-primary" href="./ask.html">
+                    Спросить
+                </a>
+
+                <div class="d-flex align-items-center gap-2">
+                    <img class="account-avatar" src="./static/img/account.jpg">
+
+                    <div>
+                        <span class="d-block">Шебордаев А.</span>
+
+                        <div class="d-flex gap-2 mt-1">
+                            <a class="btn btn-sm btn-outline-secondary" href="/settings">
+                                Настройки
+                            </a>
+
+                            <button class="btn btn-sm btn-danger" type="button">
+                                Выход
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+
+    <main class="flex-grow-1">
+        <div class="container ">
+            <div class="row mt-3 justify-content-between">
+
+                <div class="d-flex flex-column col-6 gap-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Когда сдать дз?</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Просто я понятия не имею.</h6>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                            <div class="d-flex gap-5">
+                                <div class="rating d-flex align-items-center gap-1">
+                                    <button class="btn btn-sm btn-outline-danger" type="button">−</button>
+                                    <span>5</span>
+                                    <button class="btn btn-sm btn-outline-success" type="button">+</button>
+                                </div>
+
+                                <div class="tags d-flex gap-2">
+                                    <span>Теги: </span>
+                                    <a href="tag.html">Непонимание</a>
+                                    <a href="tag.html">ДЗЖоское</a>
+                                    <a href="tag.html">ДЗ</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="answers d-flex flex-column gap-2">
+                        <div class="card answer">
+                            <div class="card-body">
+                                <h5 class="card-title">Тоже не знаю к сожалению</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Наверное не обязательно.</h6>
+                                <div class="d-flex gap-5">
+                                    <div class="rating d-flex align-items-center gap-1">
+                                        <button class="btn btn-sm btn-outline-danger" type="button">−</button>
+                                        <span>5</span>
+                                        <button class="btn btn-sm btn-outline-success" type="button">+</button>
+                                    </div>
+
+                                    <div class="tags d-flex gap-2">
+                                        <span>Теги: </span>
+                                        <a href="tag.html">Непонимание</a>
+                                        <a href="tag.html">ДЗЖоское</a>
+                                        <a href="tag.html">ДЗ</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card answer">
+                            <div class="card-body">
+                                <h5 class="card-title">Тоже не знаю к сожалению</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Наверное не обязательно.</h6>
+                                <div class="d-flex gap-5">
+                                    <div class="rating d-flex align-items-center gap-1">
+                                        <button class="btn btn-sm btn-outline-danger" type="button">−</button>
+                                        <span>5</span>
+                                        <button class="btn btn-sm btn-outline-success" type="button">+</button>
+                                    </div>
+
+                                    <div class="tags d-flex gap-2">
+                                        <span>Теги: </span>
+                                        <a href="tag.html">Непонимание</a>
+                                        <a href="tag.html">ДЗЖоское</a>
+                                        <a href="tag.html">ДЗ</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card answer">
+                            <div class="card-body">
+                                <h5 class="card-title">Тоже не знаю к сожалению</h5>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">Наверное не обязательно.</h6>
+                                <div class="d-flex gap-5">
+                                    <div class="rating d-flex align-items-center gap-1">
+                                        <button class="btn btn-sm btn-outline-danger" type="button">−</button>
+                                        <span>5</span>
+                                        <button class="btn btn-sm btn-outline-success" type="button">+</button>
+                                    </div>
+
+                                    <div class="tags d-flex gap-2">
+                                        <span>Теги: </span>
+                                        <a href="tag.html">Непонимание</a>
+                                        <a href="tag.html">ДЗЖоское</a>
+                                        <a href="tag.html">ДЗ</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <form>
+                        <div class="mb-3">
+
+                            <textarea class="form-control answer-text" placeholder="Ваш ответ"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ответить</button>
+                    </form>
+                </div>
+
+                <aside class="d-flex flex-column gap-5 col-2 ">
+
+                    <div>
+                        <h2>Теги</h2>
+                        <div class="tags d-flex flex-wrap row-gap-2 column-gap-2">
+                            <a href="tag.html">Непонимание</a>
+                            <a href="tag.html">ДЗЖоское</a>
+                            <a href="tag.html">ДЗ</a>
+                            <a href="tag.html">АнанасовыйСироп</a>
+                            <a href="tag.html">Шутеечки</a>
+                            <a href="tag.html">Анекдоты</a>
+
+                        </div>
+
+                    </div>
+                    <div>
+                        <h2>Участники</h2>
+                        <div class="members d-flex flex-wrap row-gap-2 column-gap-2">
+                            <a href="tag.html">Артемка</a>
+                            <a href="tag.html">Никитка</a>
+                            <a href="tag.html">Tagooci</a>
+                            <a href="tag.html">Tagooc</a>
+                            <a href="tag.html">Oochov</a>
+                            <a href="tag.html">Sheband0</a>
+
+                        </div>
+                    </div>
+                </aside>
+            </div>
+
+
+        </div>
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+</body>
+<script src="static/js/bootstrap.bundle.min.js"></script>
+
+</html>
