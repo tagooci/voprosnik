@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Вопросникус</title>
+
+
+    <link rel="stylesheet" href="{% static 'questions/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'questions/css/style.css' %}">
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <header class="border-bottom">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container gap-3">
+
+                <a class="navbar-brand" href="{% url 'questions:index' %}">
+                    Вопросникус
+                </a>
+
+                <form class="d-flex flex-grow-1 gap-2" role="search">
+                    <input class="form-control" type="search" name="s" placeholder="Поиск">
+                    <button class="btn btn-success" type="submit">
+                        Найти
+                    </button>
+                </form>
+
+                {% if request.COOKIES.demo_user == "1" %}
+                <a class="btn btn-outline-primary" href="{% url 'questions:ask' %}">
+                    Спросить
+                </a>
+                {% endif %}
+
+                {% if request.COOKIES.demo_user != "1" %}
+                    <div class="d-flex gap-2">
+                        <a class="btn btn-outline-secondary" href="{% url 'core:login' %}">Войти</a>
+                        <a class="btn btn-outline-secondary" href="{% url 'core:signup' %}">Регистрация</a>
+                    </div>
+                {% else %}
+                <div class="d-flex align-items-center gap-2">
+                    <img class="account-avatar" src="{% static 'questions/img/account.jpg' %}">
+
+                    <div>
+                        <span class="d-block">Шебордаев А.</span>
+
+                        <div class="d-flex gap-2 mt-1">
+                            <a class="btn btn-sm btn-outline-secondary" href="{% url 'core:profile' %}">
+                                Настройки
+                            </a>
+
+                            <form method="post" action="{% url 'core:logout' %}">
+                                {% csrf_token %}
+                                <button class="btn btn-sm btn-danger" type="submit">Выход</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+            </div>
+        </nav>
+    </header>
+
+
+    <main class="flex-grow-1">
+        <div class="container">
+            <div class="row mt-3">
+                <div class="d-flex flex-column gap-5 col-10 questions">
+                    {% block content %}{% endblock %}
+                </div>
+                <aside class="d-flex flex-column gap-5 col-2 ">
+
+                    <div>
+                        <h2>Теги</h2>
+                        <div class="tags d-flex flex-wrap row-gap-2 column-gap-2">
+                            <a href="{% url 'questions:tag' 'Непонимание' %}">Непонимание</a>
+                            <a href="{% url 'questions:tag' 'ДЗЖоское' %}">ДЗЖоское</a>
+                            <a href="{% url 'questions:tag' 'ДЗ' %}">ДЗ</a>
+                            <a href="{% url 'questions:tag' 'АнанасовыйСироп' %}">АнанасовыйСироп</a>
+                            <a href="{% url 'questions:tag' 'Шутеечки' %}">Шутеечки</a>
+                            <a href="{% url 'questions:tag' 'Анекдоты' %}">Анекдоты</a>
+
+                        </div>
+
+                    </div>
+                    <div>
+                        <h2>Участники</h2>
+                        <div class="members d-flex flex-wrap row-gap-2 column-gap-2">
+                            <span>Артемка</span>
+                            <span>Никитка</span>
+                            <span>Tagooci</span>
+                            <span>Tagooc</span>
+                            <span>Oochov</span>
+                            <span>Sheband0</span>
+
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            {% block pagination %}{% endblock %}
+
+        </div>
+
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+</body>
+<script src="{% static 'questions/js/bootstrap.bundle.min.js' %}"></script>
+
+</html>

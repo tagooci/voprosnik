@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-body">
+        {% if detail %}
+            <h2 class="card-title">{{ question.title }}</h2>
+        {% else %}
+            <a class="card-title" href="{% url 'questions:detail' question.id %}">
+                {{ question.title }}
+            </a>
+        {% endif %}
+        <h6 class="card-subtitle my-2 text-body-secondary">{{ question.text }}</h6>
+
+        <div class="d-flex gap-5">
+            <div class="rating d-flex align-items-center gap-1">
+                <button class="btn btn-sm btn-outline-danger" type="button">−</button>
+                <span>{{ question.rating }}</span>
+                <button class="btn btn-sm btn-outline-success" type="button">+</button>
+            </div>
+
+            <div class="tags d-flex gap-2">
+                <span>Теги: </span>
+                {% for tag in question.tags %}
+                    <a href="{% url 'questions:tag' tag %}">{{ tag }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
