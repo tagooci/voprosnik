@@ -1,0 +1,28 @@
+{% extends 'core/layout/base.html' %}
+
+{% block content %}
+<div class="d-flex gap-5">
+    <h2>{% block heading %}Новые вопросы{% endblock %}</h2>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Сортировка
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'questions:index' %}">Новые</a></li>
+            <li><a class="dropdown-item" href="{% url 'questions:hot' %}">Популярные</a></li>
+        </ul>
+    </div>
+</div>
+
+{% for question in questions %}
+    {% include 'questions/partials/question.html' %}
+{% empty %}
+    <p>Вопросов с этим тегом пока нет.</p>
+{% endfor %}
+
+{% endblock %}
+
+{% block pagination %}
+    {% include 'core/partials/pagination.html' %}
+{% endblock %}

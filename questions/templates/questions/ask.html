@@ -1,0 +1,22 @@
+{% extends 'core/layout/base.html' %}
+
+{% block content %}
+<h1>Новый вопрос</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label" for="title">Заголовок</label>
+        <input type="text" class="form-control" placeholder="Ваш вопрос кратко" id="title" name="title">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="text">Вопрос</label>
+        <textarea class="form-control new-question-text"
+            placeholder="Ваш вопрос подробно" id="text" name="text"></textarea>
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="tags">Теги</label>
+        <input type="text" class="form-control" placeholder="..." id="tags" name="tags">
+    </div>
+    <button type="submit" class="btn btn-primary">Задать вопрос</button>
+</form>
+{% endblock %}

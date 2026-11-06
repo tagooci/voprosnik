@@ -1,0 +1,40 @@
+{% extends 'core/layout/base.html' %}
+{% load static %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data" class="d-flex flex-column gap-2 auth">
+    {% csrf_token %}
+<h1>Настройки</h1>
+
+<div class="mb-3 row">
+    <label for="email" class="col-sm-2 col-form-label">Почта</label>
+    <div class="col-sm-10">
+        <input type="email" class="form-control" value="oochov@gmail.com" id="email" name="email">
+    </div>
+</div>
+<div class="mb-3 row">
+    <label for="login" class="col-sm-2 col-form-label">Логин</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" value="Шебордаев Андрей" id="login" name="login">
+    </div>
+</div>
+<div class="mb-3 row">
+    <label for="display_name" class="col-sm-2 col-form-label">Имя пользователя</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" value="Шебордаев Андрей" id="display_name" name="display_name">
+    </div>
+</div>
+
+<div class="mb-3 row">
+    <label for="avatar" class="col-sm-2 col-form-label">Аватарка</label>
+
+    <div class="col-sm-10">
+        <img src="{% static 'questions/img/account.jpg' %}" class="account-avatar d-block mb-2" alt="Текущий аватар">
+
+        <input class="form-control" type="file" id="avatar" name="avatar">
+    </div>
+</div>
+
+<button type="submit" class="btn btn-success">Сохранить</button>
+</form>
+{% endblock %}
