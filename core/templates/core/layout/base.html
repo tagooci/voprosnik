@@ -38,10 +38,10 @@
                 {% endif %}
 
                 {% if request.COOKIES.demo_user != "1" %}
-                    <div class="d-flex gap-2">
-                        <a class="btn btn-outline-secondary" href="{% url 'core:login' %}">Войти</a>
-                        <a class="btn btn-outline-secondary" href="{% url 'core:signup' %}">Регистрация</a>
-                    </div>
+                <div class="d-flex gap-2">
+                    <a class="btn btn-outline-secondary" href="{% url 'core:login' %}">Войти</a>
+                    <a class="btn btn-outline-secondary" href="{% url 'core:signup' %}">Регистрация</a>
+                </div>
                 {% else %}
                 <div class="d-flex align-items-center gap-2">
                     <img class="account-avatar" src="{% static 'questions/img/account.jpg' %}">
@@ -79,12 +79,11 @@
                     <div>
                         <h2>Теги</h2>
                         <div class="tags d-flex flex-wrap row-gap-2 column-gap-2">
-                            <a href="{% url 'questions:tag' 'Непонимание' %}">Непонимание</a>
-                            <a href="{% url 'questions:tag' 'ДЗЖоское' %}">ДЗЖоское</a>
-                            <a href="{% url 'questions:tag' 'ДЗ' %}">ДЗ</a>
-                            <a href="{% url 'questions:tag' 'АнанасовыйСироп' %}">АнанасовыйСироп</a>
-                            <a href="{% url 'questions:tag' 'Шутеечки' %}">Шутеечки</a>
-                            <a href="{% url 'questions:tag' 'Анекдоты' %}">Анекдоты</a>
+                            {% for tag in sidebar_tags %}
+                            <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
+                            {% empty %}
+                            <span>Тегов пока нет.</span>
+                            {% endfor %}
 
                         </div>
 

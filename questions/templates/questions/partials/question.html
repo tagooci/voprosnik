@@ -3,10 +3,11 @@
         {% if detail %}
             <h2 class="card-title">{{ question.title }}</h2>
         {% else %}
-            <a class="card-title" href="{% url 'questions:detail' question.id %}">
+            <a class="card-title" href="{{ question.get_absolute_url }}">
                 {{ question.title }}
             </a>
         {% endif %}
+        <p class="text-body-secondary">Автор: {{ question.author.username }}</p>
         <h6 class="card-subtitle my-2 text-body-secondary">{{ question.text }}</h6>
 
         <div class="d-flex gap-5">
@@ -18,8 +19,10 @@
 
             <div class="tags d-flex gap-2">
                 <span>Теги: </span>
-                {% for tag in question.tags %}
-                    <a href="{% url 'questions:tag' tag %}">{{ tag }}</a>
+                {% for tag in question.tags.all %}
+                    <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
+                {% empty %}
+                    <span>Без тегов</span>
                 {% endfor %}
             </div>
         </div>

@@ -18,7 +18,7 @@
 {% for question in questions %}
     {% include 'questions/partials/question.html' %}
 {% empty %}
-    <p>Вопросов с этим тегом пока нет.</p>
+    <p>{% block empty_message %}Пока нет ни одного вопроса.{% endblock %}</p>
 {% endfor %}
 
 {% endblock %}
