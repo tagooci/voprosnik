@@ -4,7 +4,7 @@
     {% include 'questions/partials/question.html' with detail=True %}
 
     <div class="answers d-flex flex-column gap-2">
-        <h3>Ответы</h3>
+        <h3>Ответы ({{ page_obj.paginator.count }})</h3>
         {% for answer in answers %}
             {% include 'questions/partials/answer.html' %}
         {% empty %}
