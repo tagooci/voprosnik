@@ -39,3 +39,40 @@ a.card-title:hover {
     text-decoration-color: black;
     text-underline-offset: 3px;
 }
+
+/* Длинные заголовки, логины и теги не расширяют карточки. */
+.questions,
+.card-body,
+.tags {
+    min-width: 0;
+}
+
+.card-body,
+aside .tags {
+    overflow-wrap: anywhere;
+}
+
+.question-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.question-meta .rating {
+    flex-shrink: 0;
+}
+
+.question-meta .tags {
+    flex: 1 1 12rem;
+    flex-wrap: wrap;
+}
+
+.pagination {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+}
+
+.navbar form[role="search"] {
+    min-width: 0;
+}
