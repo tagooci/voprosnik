@@ -65,7 +65,13 @@ class Answer(models.Model):
     )
     rating = models.IntegerField("Рейтинг", default=0)
 
+    is_correct = models.BooleanField("Правильный ответ", default=False)
+
     class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["question"], condition=models.Q(is_correct=True),
+                                    name="one_correct_answer_per_question"),
+        ]
         verbose_name = "Ответ"
         verbose_name_plural = "Ответы"
         ordering = ["id"]
@@ -73,8 +79,16 @@ class Answer(models.Model):
     def __str__(self):
         return self.text[:80]
 
+    def get_absolute_url(self):
+        position = Answer.objects.filter(question_id=self.question_id, pk__lte=self.pk).count()
+        page = (position - 1) // 10 + 1
+        url = reverse("questions:detail", kwargs={"question_id": self.question_id})
+        return f"{url}?page={page}#answer-{self.pk}"
+
 
 class QuestionLike(models.Model):
+    value = models.SmallIntegerField("Оценка", choices=[(1, "Лайк"), (-1, "Дизлайк")], default=1)
+
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -89,6 +103,7 @@ class QuestionLike(models.Model):
     )
 
     class Meta:
+        constraints = [models.CheckConstraint(condition=models.Q(value__in=[-1, 1]), name="question_vote_value_valid")]
         verbose_name = "Лайк вопроса"
         verbose_name_plural = "Лайки вопросов"
         unique_together = [("user", "question")]
@@ -98,6 +113,8 @@ class QuestionLike(models.Model):
 
 
 class AnswerLike(models.Model):
+    value = models.SmallIntegerField("Оценка", choices=[(1, "Лайк"), (-1, "Дизлайк")], default=1)
+
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -112,6 +129,7 @@ class AnswerLike(models.Model):
     )
 
     class Meta:
+        constraints = [models.CheckConstraint(condition=models.Q(value__in=[-1, 1]), name="answer_vote_value_valid")]
         verbose_name = "Лайк ответа"
         verbose_name_plural = "Лайки ответов"
         unique_together = [("user", "answer")]

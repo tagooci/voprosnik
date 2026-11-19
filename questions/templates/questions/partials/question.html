@@ -8,14 +8,11 @@
             </a>
         {% endif %}
         <p class="text-body-secondary">Автор: {{ question.author.username }}</p>
-        <h6 class="card-subtitle my-2 text-body-secondary">{{ question.text }}</h6>
+        <h6 class="card-subtitle my-2 text-body-secondary">{{ question.text|linebreaksbr }}</h6>
 
         <div class="question-meta">
-            <div class="rating d-flex align-items-center gap-1">
-                <button class="btn btn-sm btn-outline-danger" type="button">−</button>
-                <span>{{ question.rating }}</span>
-                <button class="btn btn-sm btn-outline-success" type="button">+</button>
-            </div>
+            {% url 'questions:question_vote' as vote_url %}
+            {% include 'questions/partials/vote.html' with object=question %}
 
             <div class="tags d-flex gap-2">
                 <span>Теги: </span>

@@ -4,7 +4,7 @@
     {% include 'questions/partials/question.html' with detail=True %}
 
     <div class="answers d-flex flex-column gap-2">
-        <h3>Ответы</h3>
+        <h3>Ответы ({{ page_obj.paginator.count }})</h3>
         {% for answer in answers %}
             {% include 'questions/partials/answer.html' %}
         {% empty %}
@@ -12,12 +12,19 @@
         {% endfor %}
     </div>
 
-    <form>
-        <div class="mb-3">
-            <textarea class="form-control answer-text" name="answer" placeholder="Ваш ответ" aria-label="Ваш ответ"></textarea>
+    {% if user.is_authenticated %}
+        <form method="post" action="{{ question.get_absolute_url }}">
+            {% csrf_token %}
+            {% include 'core/partials/form_fields.html' %}
+            <button type="submit" class="btn btn-primary">Ответить</button>
+        </form>
+    {% else %}
+        <div>
+            <textarea class="form-control" disabled title="Войдите, чтобы написать ответ" placeholder="Войдите, чтобы написать ответ"></textarea>
+            <button type="button" class="btn btn-primary mt-2" disabled title="Войдите, чтобы написать ответ">Ответить</button>
+            <a href="{% url 'core:login' %}?next={{ question.get_absolute_url|urlencode }}">Войти</a>
         </div>
-        <button type="button" class="btn btn-primary">Ответить</button>
-    </form>
+    {% endif %}
 {% endblock %}
 
 {% block pagination %}

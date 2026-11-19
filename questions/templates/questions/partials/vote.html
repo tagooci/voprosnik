@@ -1,0 +1,16 @@
+<form method="post" action="{{ vote_url }}" data-vote-form class="vote-widget">
+    {% csrf_token %}
+    <input type="hidden" name="object_id" value="{{ object.pk }}">
+    <div class="rating d-flex align-items-center gap-1">
+        <button class="btn btn-sm btn-outline-danger" type="submit" name="value" value="-1"
+                {% if not user.is_authenticated %}disabled title="Войдите, чтобы поставить оценку"
+                {% elif object.user_vote == -1 %}disabled title="Вы уже поставили дизлайк"
+                {% else %}title="Поставить дизлайк"{% endif %}>−</button>
+        <span data-rating aria-live="polite">{{ object.rating }}</span>
+        <button class="btn btn-sm btn-outline-success" type="submit" name="value" value="1"
+                {% if not user.is_authenticated %}disabled title="Войдите, чтобы поставить оценку"
+                {% elif object.user_vote == 1 %}disabled title="Вы уже поставили лайк"
+                {% else %}title="Поставить лайк"{% endif %}>+</button>
+    </div>
+    <div data-ajax-error class="text-danger small mt-1" role="alert"></div>
+</form>
