@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 
+from .validators import avatar_upload_to, avatar_validators
+
 
 class Profile(models.Model):
     user = models.OneToOneField(
@@ -10,7 +12,7 @@ class Profile(models.Model):
         verbose_name="Пользователь",
     )
     avatar = models.ImageField(
-        "Аватар", upload_to="avatars/", blank=True
+        "Аватар", upload_to=avatar_upload_to, blank=True, validators=avatar_validators
     )
 
     class Meta:

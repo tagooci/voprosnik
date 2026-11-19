@@ -29,7 +29,7 @@ class AnswerInlineFormSet(BaseInlineFormSet):
 class AnswerInline(admin.TabularInline):
     model = Answer
     formset = AnswerInlineFormSet
-    fields = ("text", "author", "rating")
+    fields = ("text", "author", "rating", "is_correct")
     raw_id_fields = ("author",)
     extra = 0
     show_change_link = True
@@ -58,26 +58,26 @@ class QuestionAdmin(admin.ModelAdmin):
 
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ("id", "text", "question", "author", "rating")
+    list_display = ("id", "text", "question", "author", "rating", "is_correct")
     search_fields = ("text", "question__title", "author__username")
-    list_filter = ("rating",)
+    list_filter = ("rating", "is_correct")
     raw_id_fields = ("author", "question")
     list_select_related = ("author", "question")
 
 
 @admin.register(QuestionLike)
 class QuestionLikeAdmin(admin.ModelAdmin):
-    list_display = ("id", "user", "question")
+    list_display = ("id", "user", "question", "value")
     search_fields = ("user__username", "question__title")
-    list_filter = ("user__is_active",)
+    list_filter = ("user__is_active", "value")
     raw_id_fields = ("user", "question")
     list_select_related = ("user", "question")
 
 
 @admin.register(AnswerLike)
 class AnswerLikeAdmin(admin.ModelAdmin):
-    list_display = ("id", "user", "answer")
+    list_display = ("id", "user", "answer", "value")
     search_fields = ("user__username", "answer__text")
-    list_filter = ("user__is_active",)
+    list_filter = ("user__is_active", "value")
     raw_id_fields = ("user", "answer")
     list_select_related = ("user", "answer")

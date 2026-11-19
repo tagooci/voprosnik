@@ -76,3 +76,24 @@ aside .tags {
 .navbar form[role="search"] {
     min-width: 0;
 }
+
+.answer {
+    scroll-margin-top: 1rem;
+}
+
+.answer:target {
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.3);
+}
+
+.account-avatar {
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.vote-widget {
+    min-width: 0;
+}
+
+.questions {
+    overflow-wrap: anywhere;
+}

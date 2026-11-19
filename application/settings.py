@@ -150,3 +150,7 @@ if DEBUG and not TESTING:
     INSTALLED_APPS += ["debug_toolbar"]
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
     INTERNAL_IPS = ["127.0.0.1", "::1"]
+
+LOGIN_URL = "core:login"
+LOGIN_REDIRECT_URL = "questions:index"
+CSRF_FAILURE_VIEW = "core.views.csrf_failure"

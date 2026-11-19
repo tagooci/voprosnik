@@ -1,11 +1,20 @@
-<div class="card answer">
+<div class="card answer {% if answer.is_correct %}border-success{% endif %}" id="answer-{{ answer.pk }}" data-answer-id="{{ answer.pk }}">
     <div class="card-body">
+        <span data-correct-badge class="badge bg-success mb-2" {% if not answer.is_correct %}hidden{% endif %}>Правильный ответ</span>
         <p class="text-body-secondary">Автор: {{ answer.author.username }}</p>
-        <p class="card-text">{{ answer.text }}</p>
-        <div class="rating d-flex align-items-center gap-1">
-            <button class="btn btn-sm btn-outline-danger" type="button">−</button>
-            <span>{{ answer.rating }}</span>
-            <button class="btn btn-sm btn-outline-success" type="button">+</button>
-        </div>
+        <p class="card-text">{{ answer.text|linebreaksbr }}</p>
+        {% url 'questions:answer_vote' as vote_url %}
+        {% include 'questions/partials/vote.html' with object=answer %}
+        {% if user.is_authenticated and user.pk == question.author_id %}
+            <form method="post" action="{% url 'questions:correct_answer' %}" data-correct-form class="mt-2">
+                {% csrf_token %}
+                <input type="hidden" name="question_id" value="{{ question.pk }}">
+                <input type="hidden" name="answer_id" value="{{ answer.pk }}">
+                <button type="submit" class="btn btn-sm btn-outline-success" {% if answer.is_correct %}disabled{% endif %}>
+                    {% if answer.is_correct %}Выбран правильным{% else %}Выбрать правильным{% endif %}
+                </button>
+                <div data-ajax-error class="text-danger small mt-1" role="alert"></div>
+            </form>
+        {% endif %}
     </div>
 </div>
